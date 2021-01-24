@@ -17,8 +17,8 @@ const StudentAddForm = () => {
   const [mob2, setMob2] = useState('');
   const [dob, setDob] = useState('')
   const [sex, setSex] = useState('')
-  let bloodGroup;
-  let admissionSecured;
+ const [bloodGroup,setBloodGroup] = useState('')
+ const [admissionSecured,setAdmissionSecured] = useState('')
   const [nameOfGuardian, setNameofGurdian] = useState('');
   //address
   const [homeName, setHomename] = useState('');
@@ -29,15 +29,15 @@ const StudentAddForm = () => {
   const [relationGuardin, setRelationGuardin] = useState('');
   const [occupationOfGuardian, setOccuptinofGurdian] = useState('');
   const [ageOfGuardian, setAgeOfGuardian] = useState('')
-  let course
-  let sem
+  const [course,setCourse] = useState('')
+const [sem,setSem] = useState('')
   let batch
   const [sslc, setSslc] = useState('');
   const [email, setEmail] = useState('');
   const [hss, setHss] = useState('');
   const [etcActivity, setEtcActivity] = useState([])
   let etc = []
-  let residence
+  const [residence,setResidence] = useState('')
   const [religion, setReligion] = useState('');
   const [cast, setCast] = useState('');
   const [prevShool, setPrevshool] = useState('');
@@ -221,19 +221,15 @@ const StudentAddForm = () => {
             e.preventDefault()
 
             console.log('clicked', e.target);
-            bloodGroup = e.target[13][0].value
-            admissionSecured = e.target[37][0].value;
-            course = e.target[38][0].value
-            residence = e.target[14][0].value;
-            // sem = e.target[43][0].value;
+          
             batch = from + '/' + to
             console.log('add', admissionSecured, 'res', residence, 'sem', sem, 'batch', batch, 'dobs',
-              dob, 'sex', sex, 'etc', etc);
+              dob, 'sex', sex, 'etc', etc,'blood',bloodGroup);
 
             if (!e.target[0].value) alert('select  photo')
             else {
-              setBValue('Uploading...')
-              postPic()
+               setBValue('Uploading...')
+               postPic()
 
               //  postData()
             }
@@ -401,7 +397,10 @@ const StudentAddForm = () => {
 
             <label htmlFor="bloodGroup"
               className={`${classes.InputField} ${classes.Dateofbirth}`} >Blood Group</label>
-            <select required >
+            <select required  onClick={e=>{
+              setBloodGroup(e.target.value)
+            }} >
+            <option value=""></option>
               <option value="A+ (Positive)">A+ (Positive)</option>
               <option value="A- (Negative)">A- (Negative)</option>
               <option value="B+ (Positive)">B+ (Positive)</option>
@@ -415,7 +414,10 @@ const StudentAddForm = () => {
 
             <label htmlFor="residence"
               className={classes.InputField} >Residence</label>
-            <select required >
+            <select required  onClick={e=>{
+              setResidence(e.target.value)
+            }}>
+            <option value=""></option>
               <option value="With Parent">With Parent</option>
               <option value="With Relatives">With Relatives</option>
               <option value="College Hostel">College Hostel</option>
@@ -580,6 +582,7 @@ const StudentAddForm = () => {
             <label htmlFor="occupation"
               className={classes.InputField} >Occupation</label>
             <input type="text"
+            onChange={e=>setresponsibleGuardianOccupation(e.target.value)}
             />
 
             <p className={classes.MainHead}>Qualification Info</p>
@@ -720,7 +723,14 @@ const StudentAddForm = () => {
 
             <label htmlFor="admissionsecured"
               className={classes.InputField}>admission secured</label>
-            <select required >
+            <select required 
+            
+            onClick={e=>{
+              setAdmissionSecured(e.target.value)
+            }}
+            >
+
+            <option value=""></option>
               <option value="Management">Management</option>
               <option value="Merit">Merit</option>
               <option value="Muslim">Muslim</option>
@@ -731,7 +741,13 @@ const StudentAddForm = () => {
 
             <label htmlFor="Course"
               className={classes.InputField}>Course</label>
-            <select required >
+            <select required
+            
+            onClick={e=>{
+              setCourse(e.target.value)
+            }}
+            >
+            <option value=""></option>
               <option value="BSC computer science">BSC computer science</option>
               <option value="BSC Physics">BSC Physics</option>
               <option value="BSC Microbiology">BSC Microbiology</option>
@@ -750,6 +766,26 @@ const StudentAddForm = () => {
               <option value="BA Hindi">BA Hindi</option>
               <option value="BA Malayalam">BA Malayalam</option>
             </select>
+
+
+            <label htmlFor="Sem"
+              className={classes.InputField}>admission secured</label>
+            <select required 
+            
+            onClick={e=>{
+              setSem(e.target.value)
+            }}
+            >
+
+            <option value=""></option>
+              <option value="First">First</option>
+              <option value="Second">Second</option>
+              <option value="Third">Third</option>
+              <option value="Fourth">Fourth</option>
+              <option value="Fifth">Fifth</option>
+              <option value="Sixth">Sixth</option>
+            </select>
+            
 
             <label  htmlFor="admno"
               className={classes.InputField} >Admission Number

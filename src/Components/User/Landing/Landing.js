@@ -41,7 +41,7 @@ const Landing = () => {
             <Nav data={{Address,setAddress}} />
             <div className={classes.StudentDataShow}>
                 {
-                    Address.map((user, index) => {
+                   Address? Address.map((user, index) => {
                         
                         return (
                             <StudentCard
@@ -55,7 +55,7 @@ const Landing = () => {
                             />
 
                         )
-                    })
+                    }):<h1>Loading...</h1>
                 }
             </div>
             <Addbtn />

@@ -21,7 +21,8 @@ const  history = useHistory()
   const [mob2, setMob2] = useState('');
   const [dob, setDob] = useState('')
   const [sex, setSex] = useState('')
-  const [blood,setBlood] = useState('')
+  const [blood,setBlood] = useState('');
+  const [sub,setSub] = useState('')
   let bloodGroup;
   let admissionSecured;
   const [nameOfGuardian, setNameofGurdian] = useState('');
@@ -56,8 +57,7 @@ const  history = useHistory()
   const [specialAchiev, setSpecialAchiev] = useState('');
   const [maritalStatus, setMaritalStatus] = useState(Boolean);
   const [specialProblem, setSpecialProblem] = useState('');
-  const [from, setFrom] = useState('')
-  const [to, setTo] = useState('')
+
   const [prevCourse, setPrevCourse] = useState('')
 
   const Edit = () => {
@@ -68,6 +68,7 @@ const  history = useHistory()
 
   const postData = () => {
 
+    console.log(course)
 
       console.log(bloodGroup);
       console.log(admissionSecured);
@@ -81,7 +82,7 @@ const  history = useHistory()
           lName,
           id,
           fName,
-          course,
+          course:sub,
           sex,
           sem,
           mob1,
@@ -114,6 +115,7 @@ const  history = useHistory()
           specialProblem,
           prevCourse,
           admissionSecured,
+          admno,
           email
         })
       }).then(res => res.json()).then(responce => {
@@ -196,7 +198,7 @@ const  history = useHistory()
       setResponsibleGuardianAge(responce.responsibleGuardian.age);
       setResponsibleGuardianMob(responce.responsibleGuardian.mob);
       setresponsibleGuardianOccupation(responce.responsibleGuardian.occupation);
-      setSpecialAchiev(responce.responsibleGuardian.specialAchiev);
+      setSpecialAchiev(responce.specialAchiev);
       setSslc(responce.sslc)
       setHss(responce.hss);
       setPrevCourse(responce.prevCourse);
@@ -207,7 +209,8 @@ const  history = useHistory()
         imageUrl:responce.pic
       })
 
-
+        setMaritalStatus(responce.maritalStatus)
+        setSub(responce.course)
 
       console.log(blood);
     })
@@ -277,10 +280,10 @@ const saveBtn = useRef()
             console.log('clicked', e.target);
             bloodGroup = e.target[13][0].value
             admissionSecured = e.target[37][0].value;
-            course = e.target[38][0].value
+            console.log(e.target)
             residence = e.target[14][0].value;
             // sem = e.target[43][0].value;
-            batch = from + '/' + to
+      
             console.log('add', admissionSecured, 'res', residence, 'sem', sem, 'batch', batch, 'dobs',
               dob, 'sex', sex, 'etc', etc);
 
@@ -562,6 +565,7 @@ const saveBtn = useRef()
                   value="True"
                   name="martial"
                   required
+                  checked = {maritalStatus?true:false}
                   disabled={editIco ? false : true }
                   onClick={() => setMaritalStatus(true)}
                 />
@@ -576,6 +580,8 @@ const saveBtn = useRef()
                   value="False"
                   name="martial"
                   required
+                  checked = {!maritalStatus?true:false}
+
                   disabled={editIco ? false : true }
                   onClick={() => {
                     setMaritalStatus(false)
@@ -807,7 +813,11 @@ const saveBtn = useRef()
 
             <label htmlFor="Course"
               className={classes.InputField}>Course</label>
-            <select required  disabled={editIco ? false : true } >
+            <select required  disabled={editIco ? false : true } onClick={e=>{
+              setSub(e.target.value)
+            }} >
+            <option value={sub}>{sub}</option>
+
               <option value="BSC computer science">BSC computer science</option>
               <option value="BSC Physics">BSC Physics</option>
               <option value="BSC Microbiology">BSC Microbiology</option>
@@ -816,8 +826,8 @@ const saveBtn = useRef()
               <option value="BCA">BCA</option>
               <option value="BBA">BBA</option>
               <option value="BCOM TT">BCOM TT</option>
-              <option value="BCOM TT">BCOM CA</option>
-              <option value="BCOM Finance)">BCOM Finance</option>
+              <option value="BCOM CA">BCOM CA</option>
+              <option value="BCOM Finance">BCOM Finance</option>
               <option value="BCOM Islamic Finance">BCOM Islamic Finance</option>
               <option value="BA Multimedia">BA Multimedia</option>
               <option value="BA Mass Communication">BA Mass Communication</option>
@@ -847,7 +857,7 @@ const saveBtn = useRef()
               type="text"
               required
               value={batch}
-              onChange={e => setTo(e.target.value)}
+              onChange={e => setBatch(e.target.value)}
             />
 
           </div>
