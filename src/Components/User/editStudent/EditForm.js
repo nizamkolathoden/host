@@ -1,5 +1,5 @@
 import React, { useRef, useState, useEffect } from 'react'
-import {useHistory} from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
 import classes from './EditStudent.module.css'
 import { FaPen } from "react-icons/fa";
 import { cloud } from '../StudentAdd/key'
@@ -7,7 +7,7 @@ import { useParams } from 'react-router-dom'
 const StudentEditForm = () => {
   const { id } = useParams()
   const [editIco, setEditIco] = useState(false)
-const  history = useHistory()
+  const history = useHistory()
   let pic;
   const [bValue, setBValue] = useState('Submit');
   const [admno, setAdmno] = useState('');
@@ -21,10 +21,10 @@ const  history = useHistory()
   const [mob2, setMob2] = useState('');
   const [dob, setDob] = useState('')
   const [sex, setSex] = useState('')
-  const [blood,setBlood] = useState('');
-  const [sub,setSub] = useState('')
-  let bloodGroup;
-  let admissionSecured;
+  // const [blood,setBlood] = useState('');
+  const [sub, setSub] = useState('')
+  const [bloodGroup, setBloodGroup] = useState('');
+  const [admissionSecured, setAdmissionSecured] = useState('')
   const [nameOfGuardian, setNameofGurdian] = useState('');
   //address
   const [homeName, setHomename] = useState('');
@@ -35,15 +35,15 @@ const  history = useHistory()
   const [relationGuardin, setRelationGuardin] = useState('');
   const [occupationOfGuardian, setOccuptinofGurdian] = useState('');
   const [ageOfGuardian, setAgeOfGuardian] = useState('')
-  let course
-  let sem
-  const [batch,setBatch] = useState('');
+  
+  const [sem,setSem] = useState('')
+  const [batch, setBatch] = useState('');
   const [sslc, setSslc] = useState('');
   const [email, setEmail] = useState('');
   const [hss, setHss] = useState('');
   const [etcActivity, setEtcActivity] = useState([])
   let etc = []
-  let residence
+  const [residence, setResidence] = useState('')
   const [religion, setReligion] = useState('');
   const [cast, setCast] = useState('');
   const [prevShool, setPrevshool] = useState('');
@@ -68,68 +68,67 @@ const  history = useHistory()
 
   const postData = () => {
 
-    console.log(course)
 
-      console.log(bloodGroup);
-      console.log(admissionSecured);
-      fetch('https://mascsdb.herokuapp.com/student/editstudent', {
-        method: 'Put',
-        headers: {
-          'Content-Type': 'application/json',
-          "authorization": token.replace(/['"]+/g, '')
-        },
-        body: JSON.stringify({
-          lName,
-          id,
-          fName,
-          course:sub,
-          sex,
-          sem,
-          mob1,
-          mob2,
-          bloodGroup,
-          dob,
-          nameOfGuardian,
-          occupationOfGuardian,
-          batch,
-          sslc,
-          homeName,
-          pincode,
-          post,
-          city,
-          relationGuardin,
-          religion,
-          prevShool,
-          residence,
-          responsibleGuardianName,
-          responsibleGuardianAge,
-          responsibleGuardianMob,
-          responsibleGuardianRelation,
-          ageOfGuardian,
-          hss,
-          etcActivity,
-          cast,
-          responsibleGuardianOccupation,
-          specialAchiev,
-          maritalStatus,
-          specialProblem,
-          prevCourse,
-          admissionSecured,
-          admno,
-          email
-        })
-      }).then(res => res.json()).then(responce => {
-        if (responce.error) alert(responce.error)
-
-        else {
-          console.log(responce);
-          alert('student updated sucessfuly');
-        history.push("/")
-        }
-      }).catch(e => {
-        console.log(e);
+    console.log(bloodGroup);
+    console.log(admissionSecured);
+    fetch('https://mascsdb.herokuapp.com/student/editstudent', {
+      method: 'Put',
+      headers: {
+        'Content-Type': 'application/json',
+        "authorization": token.replace(/['"]+/g, '')
+      },
+      body: JSON.stringify({
+        lName,
+        id,
+        fName,
+        course: sub,
+        sex,
+        sem,
+        mob1,
+        mob2,
+        bloodGroup,
+        dob,
+        nameOfGuardian,
+        occupationOfGuardian,
+        batch,
+        sslc,
+        homeName,
+        pincode,
+        post,
+        city,
+        relationGuardin,
+        religion,
+        prevShool,
+        residence,
+        responsibleGuardianName,
+        responsibleGuardianAge,
+        responsibleGuardianMob,
+        responsibleGuardianRelation,
+        ageOfGuardian,
+        hss,
+        etcActivity,
+        cast,
+        responsibleGuardianOccupation,
+        specialAchiev,
+        maritalStatus,
+        specialProblem,
+        prevCourse,
+        admissionSecured,
+        admno,
+        email
       })
-   
+    }).then(res => res.json()).then(responce => {
+      if (responce.error) alert(responce.error)
+
+      else {
+        console.log(responce);
+        alert('student updated sucessfuly');
+        history.push("/")
+      }
+    }).catch(e => {
+      console.log(e);
+    })
+
   }
   const postPic = () => {
     setBValue('Uploading...')
@@ -185,8 +184,8 @@ const  history = useHistory()
       setMob2(responce.mob2);
       setDob(responce.dob);
       setSex(responce.sex)
-      setBlood(responce.bloodGroup)
-      setLive(responce.residence);
+      setBloodGroup(responce.bloodGroup)
+      setResidence(responce.residence);
       setRelationGuardin(responce.relationGuardin)
       setOccuptinofGurdian(responce.occupationOfGuardian)
       setReligion(responce.religion);
@@ -206,13 +205,14 @@ const  history = useHistory()
       setAdmno(responce.admno);
       setBatch(responce.batch)
       setImage({
-        imageUrl:responce.pic
+        imageUrl: responce.pic
       })
 
-        setMaritalStatus(responce.maritalStatus)
-        setSub(responce.course)
+      setMaritalStatus(responce.maritalStatus)
+      setSub(responce.course)
+      setAdmissionSecured(responce.admissionSecured);
+      setSem(responce.sem)
 
-      console.log(blood);
     })
 
   }, [])
@@ -247,7 +247,7 @@ const  history = useHistory()
       }
     }
   };
-const saveBtn = useRef()
+  const saveBtn = useRef()
 
   const profileclick = useRef();
 
@@ -261,16 +261,16 @@ const saveBtn = useRef()
   return (
 
     <div className={classes.StudentAddForm}>
-      <div className={classes.EditButton} onClick={()=>{
-            Edit();
-            {
-              if(
-                editIco === true
-              )
-              saveBtnActive()
-            }
+      <div className={classes.EditButton} onClick={() => {
+        Edit();
+        {
+          if (
+            editIco === true
+          )
+            saveBtnActive()
+        }
       }} >
-        <FaPen size="20px" color="#fafafa" /> 
+        <FaPen size="20px" color="#fafafa" />
       </div>
       <div className={classes.Form}>
         <form
@@ -278,19 +278,17 @@ const saveBtn = useRef()
             e.preventDefault()
             setBValue('Uploading...')
             console.log('clicked', e.target);
-            bloodGroup = e.target[13][0].value
-            admissionSecured = e.target[37][0].value;
             console.log(e.target)
-            residence = e.target[14][0].value;
+
             // sem = e.target[43][0].value;
-      
+
             console.log('add', admissionSecured, 'res', residence, 'sem', sem, 'batch', batch, 'dobs',
               dob, 'sex', sex, 'etc', etc);
 
-  
-          
-              // postPic()
-              postData()
+
+
+            // postPic()
+            postData()
 
 
 
@@ -315,7 +313,7 @@ const saveBtn = useRef()
               className={classes.InputField} >FirstName</label>
             <input type="text"
               /* pattern="[A-Za-z]" */
-              disabled={editIco ? false : true }
+              disabled={editIco ? false : true}
               required
               value={fName}
               onChange={e => setFname(e.target.value)}
@@ -326,7 +324,7 @@ const saveBtn = useRef()
             <input type="text"
               // pattern="[A-Za-z]"
               required
-              disabled={editIco ? false : true }
+              disabled={editIco ? false : true}
               value={lName}
               onChange={e => setLname(e.target.value)}
             />
@@ -336,7 +334,7 @@ const saveBtn = useRef()
             <input type="text"
               /* pattern="[A-Za-z]" */
               required
-              disabled={editIco ? false : true }
+              disabled={editIco ? false : true}
               value={nameOfGuardian}
               onChange={e => setNameofGurdian(e.target.value)}
             />
@@ -346,7 +344,7 @@ const saveBtn = useRef()
             <input type="text"
               /* pattern="[A-Za-z]" */
               required
-              disabled={editIco ? false : true }
+              disabled={editIco ? false : true}
               value={homeName}
               onChange={e => setHomename(e.target.value)}
 
@@ -357,7 +355,7 @@ const saveBtn = useRef()
             <input type="text"
               /* pattern="[A-Za-z]" */
               required
-              disabled={editIco ? false : true }
+              disabled={editIco ? false : true}
               value={post}
               onChange={e => setPost(e.target.value)}
 
@@ -368,7 +366,7 @@ const saveBtn = useRef()
             <input type="text"
               /*  pattern="[A-Za-z]" */
               required
-              disabled={editIco ? false : true }
+              disabled={editIco ? false : true}
               value={city}
               onChange={e => setCity(e.target.value)}
             />
@@ -378,7 +376,7 @@ const saveBtn = useRef()
             <input type="number"
               /* pattern="[0-9]"
    */            required
-   disabled={editIco ? false : true }
+              disabled={editIco ? false : true}
               value={pincode}
               onChange={e => setPincode(e.target.value)}
 
@@ -389,7 +387,7 @@ const saveBtn = useRef()
             <input type="number"
               /* pattern="[0-9]"
    */            required
-   disabled={editIco ? false : true }
+              disabled={editIco ? false : true}
               value={mob1}
               onChange={e => setMob1(e.target.value)}
             />
@@ -399,7 +397,7 @@ const saveBtn = useRef()
             <input type="number"
               /* pattern="[0-9]"
    */
-  disabled={editIco ? false : true }
+              disabled={editIco ? false : true}
               value={mob2}
               onChange={e => setMob2(e.target.value)}
             />
@@ -408,9 +406,9 @@ const saveBtn = useRef()
               className={`${classes.InputField} ${classes.Dateofbirth}`} >DOB</label>
             <input type="date"
               required
-              disabled={editIco ? false : true }
+              disabled={editIco ? false : true}
               value={dob}
-              
+
               onChange={e => {
 
                 setDob(e.target.value)
@@ -421,15 +419,15 @@ const saveBtn = useRef()
             <div className={classes.sexField}>
               <label htmlFor="sexinput"
                 className={classes.InputField} >
-                  
+
                 <input
                   id="sexinput"
                   type="radio"
                   value="Male"
                   name="sex"
                   required
-                  checked={sex==='Male'?true:false}
-                  disabled={editIco ? false : true }
+                  checked={sex === 'Male' ? true : false}
+                  disabled={editIco ? false : true}
 
                   onClick={(e) => {
 
@@ -447,9 +445,9 @@ const saveBtn = useRef()
                   type="radio"
                   value="Female"
                   name="sex"
-                  disabled={editIco ? false : true }
+                  disabled={editIco ? false : true}
                   required
-                  checked={sex==='Female'?true:false}
+                  checked={sex === 'Female' ? true : false}
                   onClick={(e) => {
 
                     setSex(e.target.value)
@@ -462,9 +460,10 @@ const saveBtn = useRef()
 
             <label htmlFor="bloodGroup"
               className={`${classes.InputField} ${classes.Dateofbirth}`} >Blood Group</label>
-            <select required  disabled={editIco ? false : true } >
-              <option value={blood}>{blood}</option>
-              {console.log('insec',bloodGroup)}
+            <select required disabled={editIco ? false : true}
+              onClick={e => setBloodGroup(e.target.value)}
+            >
+              <option value={bloodGroup}>{bloodGroup}</option>
               <option value="A- (Negative)">A- (Negative)</option>
               <option value="A+ (Positive)">A+ (Positive)</option>
               <option value="B+ (Positive)">B+ (Positive)</option>
@@ -478,8 +477,11 @@ const saveBtn = useRef()
 
             <label htmlFor="residence"
               className={classes.InputField} >Residence</label>
-            <select required  disabled={editIco ? false : true } >
-            <option value={live}>{live}</option>
+            <select required disabled={editIco ? false : true}
+
+              onClick={e => setResidence(e.target.value)}
+            >
+              <option value={residence}>{residence}</option>
               <option value="With Parent">With Parent</option>
               <option value="With Relatives">With Relatives</option>
               <option value="College Hostel">College Hostel</option>
@@ -491,7 +493,7 @@ const saveBtn = useRef()
               className={classes.InputField} >Relationship With Guardian</label>
             <input type="text"
               /* pattern="[A-Za-z]" */
-              disabled={editIco ? false : true }
+              disabled={editIco ? false : true}
               value={relationGuardin}
               onChange={e => {
 
@@ -504,7 +506,7 @@ const saveBtn = useRef()
               className={classes.InputField} >Ocupation of Guardien</label>
             <input type="text"
               /* pattern="[A-Za-z]" */
-              disabled={editIco ? false : true }
+              disabled={editIco ? false : true}
               required
               value={occupationOfGuardian}
               onChange={e => {
@@ -519,7 +521,7 @@ const saveBtn = useRef()
               className={classes.InputField} >Religion</label>
             <input type="text"
               required
-              disabled={editIco ? false : true }
+              disabled={editIco ? false : true}
               value={religion}
               onChange={e => {
 
@@ -533,7 +535,7 @@ const saveBtn = useRef()
               className={classes.InputField} >Cast</label>
             <input type="text"
               required
-              disabled={editIco ? false : true }
+              disabled={editIco ? false : true}
               value={cast}
               onChange={e => {
 
@@ -546,7 +548,7 @@ const saveBtn = useRef()
             <label htmlFor="mail"
               className={classes.InputField} >E-Mail</label>
             <input type="mail"
- disabled={editIco ? false : true }
+              disabled={editIco ? false : true}
               value={email}
               onChange={e => {
 
@@ -565,14 +567,14 @@ const saveBtn = useRef()
                   value="True"
                   name="martial"
                   required
-                  checked = {maritalStatus?true:false}
-                  disabled={editIco ? false : true }
+                  checked={maritalStatus ? true : false}
+                  disabled={editIco ? false : true}
                   onClick={() => setMaritalStatus(true)}
                 />
         True
         </label>
 
-              <label  htmlFor="martialf"
+              <label htmlFor="martialf"
                 className={classes.InputField} >
                 <input
                   id="martialf"
@@ -580,9 +582,9 @@ const saveBtn = useRef()
                   value="False"
                   name="martial"
                   required
-                  checked = {!maritalStatus?true:false}
+                  checked={!maritalStatus ? true : false}
 
-                  disabled={editIco ? false : true }
+                  disabled={editIco ? false : true}
                   onClick={() => {
                     setMaritalStatus(false)
                     console.log(maritalStatus);
@@ -595,7 +597,7 @@ const saveBtn = useRef()
             <label htmlFor="specialproblem"
               className={classes.InputField} >Special Problem</label>
             <input type="text"
- disabled={editIco ? false : true }
+              disabled={editIco ? false : true}
               value={specialProblem}
               onChange={e => {
                 setSpecialProblem(e.target.value)
@@ -607,7 +609,7 @@ const saveBtn = useRef()
             <label htmlFor="name"
               className={classes.InputField} >Name</label>
             <input type="text"
- disabled={editIco ? false : true }
+              disabled={editIco ? false : true}
               value={responsibleGuardianName}
               onChange={e => {
                 setResponsibleGuardianName(e.target.value)
@@ -620,7 +622,7 @@ const saveBtn = useRef()
               className={classes.InputField} >Relationship</label>
             <input type="text"
               required
-              disabled={editIco ? false : true }
+              disabled={editIco ? false : true}
               value={responsibleGuardianRelation}
               onChange={e => {
                 setResponsibleGuardianRelation(e.target.value)
@@ -630,7 +632,7 @@ const saveBtn = useRef()
             <label htmlFor="age"
               className={classes.InputField} >Age</label>
             <input type="number"
-             disabled={editIco ? false : true }
+              disabled={editIco ? false : true}
               value={responsibleGuardianAge}
               onChange={e => {
                 setResponsibleGuardianAge(e.target.value)
@@ -641,7 +643,7 @@ const saveBtn = useRef()
             <label htmlFor="guardianmobno"
               className={classes.InputField} >Mobile Number</label>
             <input type="number"
-             disabled={editIco ? false : true }
+              disabled={editIco ? false : true}
               required
               value={responsibleGuardianMob}
               onChange={e => {
@@ -652,20 +654,22 @@ const saveBtn = useRef()
             <label htmlFor="occupation"
               className={classes.InputField} >Occupation</label>
             <input type="text"
-             disabled={editIco ? false : true }
+            value={responsibleGuardianOccupation}
+            onChange={e=>setresponsibleGuardianOccupation(e.target.value)}
+              disabled={editIco ? false : true}
             />
 
             <p className={classes.MainHead}>Qualification Info</p>
 
             <p>Extra Curricular Activities</p>
             <div className={classes.extrac}>
-              <label  htmlFor="extracA"
+              <label htmlFor="extracA"
                 className={classes.InputField} >
                 <input
                   id="extracA"
                   type="checkbox"
                   value="Arts"
-                  disabled={editIco ? false : true }
+                  disabled={editIco ? false : true}
                   name="extrac"
                   onChange={e => {
                     console.log(e.target.checked);
@@ -681,13 +685,13 @@ const saveBtn = useRef()
         Arts
         </label>
 
-              <label  htmlFor="extracS"
+              <label htmlFor="extracS"
                 className={classes.InputField} >
                 <input
                   id="extracS"
                   type="checkbox"
                   value="Sports"
-                  disabled={editIco ? false : true }
+                  disabled={editIco ? false : true}
                   name="extrac"
                   onChange={e => {
                     console.log(e.target.checked);
@@ -702,13 +706,13 @@ const saveBtn = useRef()
         Sports
         </label>
 
-              <label  htmlFor="extracN"
+              <label htmlFor="extracN"
                 className={classes.InputField} >
                 <input
                   id="extracN"
                   type="checkbox"
                   value="NCC"
-                  disabled={editIco ? false : true }
+                  disabled={editIco ? false : true}
                   name="extrac"
                   onChange={e => {
                     console.log(e.target.checked);
@@ -723,13 +727,13 @@ const saveBtn = useRef()
         NCC
         </label>
 
-              <label  htmlFor="extracSS"
+              <label htmlFor="extracSS"
                 className={classes.InputField} >
                 <input
                   id="extracSS"
                   type="checkbox"
                   value="NSS"
-                  disabled={editIco ? false : true }
+                  disabled={editIco ? false : true}
                   name="extrac"
                   onChange={async e => {
                     console.log(e.target.checked);
@@ -748,7 +752,7 @@ const saveBtn = useRef()
             <label htmlFor="SpecialAchievments"
               className={classes.InputField} >Special Achievments</label>
             <input type="text"
-             disabled={editIco ? false : true }
+              disabled={editIco ? false : true}
               value={specialAchiev}
               onChange={e => setSpecialAchiev(e.target.value)}
             />
@@ -757,29 +761,29 @@ const saveBtn = useRef()
               className={classes.InputField} >SSLC/CBSE mark (%)
       </label>
             <input
-             disabled={editIco ? false : true }
+              disabled={editIco ? false : true}
               type="number"
               required
               value={sslc}
               onChange={e => setSslc(e.target.value)}
             />
 
-            <label  htmlFor="hsemark"
+            <label htmlFor="hsemark"
               className={classes.InputField} >HSE Paper (,)
       </label>
             <input
               type="text"
-              disabled={editIco ? false : true }
+              disabled={editIco ? false : true}
               value={prevCourse}
               onChange={e => setPrevCourse(e.target.value)}
               required
             />
 
-            <label  htmlFor="hsemark"
+            <label htmlFor="hsemark"
               className={classes.InputField} >HSE/CBSE mark (%)
       </label>
             <input
-             disabled={editIco ? false : true }
+              disabled={editIco ? false : true}
               type="number"
               required
               value={hss}
@@ -787,11 +791,11 @@ const saveBtn = useRef()
             />
 
 
-            <label  htmlFor="institution"
+            <label htmlFor="institution"
               className={classes.InputField} >Institution last attended
       </label>
             <input
-             disabled={editIco ? false : true }
+              disabled={editIco ? false : true}
               type="text"
               value={prevShool}
               onChange={e => setPrevshool(e.target.value)}
@@ -802,7 +806,11 @@ const saveBtn = useRef()
 
             <label htmlFor="admissionsecured"
               className={classes.InputField}>admission secured</label>
-            <select required  disabled={editIco ? false : true } >
+            <select required disabled={editIco ? false : true}
+              onClick={e =>setAdmissionSecured(e.target
+                .value)}
+            >
+              <option value={admissionSecured}>{admissionSecured}</option>
               <option value="Management">Management</option>
               <option value="Merit">Merit</option>
               <option value="Muslim">Muslim</option>
@@ -813,10 +821,10 @@ const saveBtn = useRef()
 
             <label htmlFor="Course"
               className={classes.InputField}>Course</label>
-            <select required  disabled={editIco ? false : true } onClick={e=>{
+            <select required disabled={editIco ? false : true} onClick={e => {
               setSub(e.target.value)
             }} >
-            <option value={sub}>{sub}</option>
+              <option value={sub}>{sub}</option>
 
               <option value="BSC computer science">BSC computer science</option>
               <option value="BSC Physics">BSC Physics</option>
@@ -837,11 +845,30 @@ const saveBtn = useRef()
               <option value="BA Malayalam">BA Malayalam</option>
             </select>
 
-            <label  htmlFor="admno"
+            <label htmlFor="Sem"
+              className={classes.InputField}>Sem</label>
+            <select required 
+            
+            onClick={e=>{
+              setSem(e.target.value)
+            }}
+            >
+
+            <option value={sem}>{sem}</option>
+              <option value="First">First</option>
+              <option value="Second">Second</option>
+              <option value="Third">Third</option>
+              <option value="Fourth">Fourth</option>
+              <option value="Fifth">Fifth</option>
+              <option value="Sixth">Sixth</option>
+            </select>
+           
+
+            <label htmlFor="admno"
               className={classes.InputField} >Admission Number
       </label>
             <input
-             disabled={editIco ? false : true }
+              disabled={editIco ? false : true}
               type="number"
               required
               value={admno}
@@ -849,11 +876,11 @@ const saveBtn = useRef()
             />
 
 
-            <label  htmlFor="batch"
+            <label htmlFor="batch"
               className={classes.InputField} >Batch
       </label>
             <input
-             disabled={editIco ? false : true }
+              disabled={editIco ? false : true}
               type="text"
               required
               value={batch}
@@ -862,11 +889,11 @@ const saveBtn = useRef()
 
           </div>
           {
-            editIco ? <input   ref={saveBtn} type="submit" value={bValue}
-            disabled={bValue === 'Uploading...' ? true : false}
-            className={classes.Submit} /> : null
+            editIco ? <input ref={saveBtn} type="submit" value={bValue}
+              disabled={bValue === 'Uploading...' ? true : false}
+              className={classes.Submit} /> : null
           }
-          
+
         </form>
       </div>
     </div>

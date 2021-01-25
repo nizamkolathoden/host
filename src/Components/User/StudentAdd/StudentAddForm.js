@@ -769,7 +769,7 @@ const [sem,setSem] = useState('')
 
 
             <label htmlFor="Sem"
-              className={classes.InputField}>admission secured</label>
+              className={classes.InputField}>Sem</label>
             <select required 
             
             onClick={e=>{
