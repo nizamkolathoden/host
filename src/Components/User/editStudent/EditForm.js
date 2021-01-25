@@ -280,7 +280,6 @@ const StudentEditForm = () => {
             console.log('clicked', e.target);
             console.log(e.target)
 
-            // sem = e.target[43][0].value;
 
             console.log('add', admissionSecured, 'res', residence, 'sem', sem, 'batch', batch, 'dobs',
               dob, 'sex', sex, 'etc', etc);
@@ -461,7 +460,7 @@ const StudentEditForm = () => {
             <label htmlFor="bloodGroup"
               className={`${classes.InputField} ${classes.Dateofbirth}`} >Blood Group</label>
             <select required disabled={editIco ? false : true}
-              onClick={e => setBloodGroup(e.target.value)}
+              onChange={e => setBloodGroup(e.target.value)}
             >
               <option value={bloodGroup}>{bloodGroup}</option>
               <option value="A- (Negative)">A- (Negative)</option>
@@ -479,7 +478,7 @@ const StudentEditForm = () => {
               className={classes.InputField} >Residence</label>
             <select required disabled={editIco ? false : true}
 
-              onClick={e => setResidence(e.target.value)}
+              onChange={e => setResidence(e.target.value)}
             >
               <option value={residence}>{residence}</option>
               <option value="With Parent">With Parent</option>
@@ -807,7 +806,7 @@ const StudentEditForm = () => {
             <label htmlFor="admissionsecured"
               className={classes.InputField}>admission secured</label>
             <select required disabled={editIco ? false : true}
-              onClick={e =>setAdmissionSecured(e.target
+              onChange={e =>setAdmissionSecured(e.target
                 .value)}
             >
               <option value={admissionSecured}>{admissionSecured}</option>
@@ -821,7 +820,7 @@ const StudentEditForm = () => {
 
             <label htmlFor="Course"
               className={classes.InputField}>Course</label>
-            <select required disabled={editIco ? false : true} onClick={e => {
+            <select required disabled={editIco ? false : true} onChange={e => {
               setSub(e.target.value)
             }} >
               <option value={sub}>{sub}</option>
@@ -849,7 +848,7 @@ const StudentEditForm = () => {
               className={classes.InputField}>Sem</label>
             <select required 
             
-            onClick={e=>{
+            onChange={e=>{
               setSem(e.target.value)
             }}
             >
