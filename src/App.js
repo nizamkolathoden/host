@@ -8,7 +8,7 @@ import "./App.module.css";
 import { intialState, reducer } from "./reducer/Usereucer";
 import classes from "./App.module.css";
 import EditStudent from './Components/User/editStudent/EditStudent'
-
+import Admin from './Components/User/Admin/Admin'
 
 export const UserContext = createContext();
 
@@ -43,6 +43,10 @@ const Routing = () => {
 
       <Route path="/addstudent">
         <StudentAdd />
+      </Route>
+
+      <Route path="/admin">
+        <Admin />
       </Route>
 
       <Route  path="/editstudent/:id">

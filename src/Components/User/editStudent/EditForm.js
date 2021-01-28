@@ -846,7 +846,7 @@ const StudentEditForm = () => {
 
             <label htmlFor="Sem"
               className={classes.InputField}>Sem</label>
-            <select required 
+            <select required disabled={editIco ? false : true}
             
             onChange={e=>{
               setSem(e.target.value)

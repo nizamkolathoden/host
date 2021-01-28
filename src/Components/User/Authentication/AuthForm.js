@@ -1,11 +1,13 @@
-import React, {useEffect,useState} from "react";
+import React, {useEffect,useState,useContext} from "react";
 import "sal.js/dist/sal.css";
 import sal from "sal.js";
 import classes from "./Auth.module.css";
 import { useHistory } from 'react-router-dom'
-
+import {UserContext} from '../../../App'
 const AuthForm = () => {
   const history = useHistory()
+  const { dispatch } = useContext(UserContext);
+
   useEffect(
     sal, []
 );
@@ -27,6 +29,11 @@ const login = ()=>{
       alert(user.error)
     }else{
       console.log(user);
+      if(user.rule ==='admin') {
+        dispatch({ type: "ADMIN", payload: 'ADMIN' });
+        localStorage.setItem('mascAdmin',JSON.stringify(user))
+        
+      }else dispatch({ type: "USER", payload: user }); 
       localStorage.setItem('mascStudetDb',JSON.stringify(user.token));
       history.push('/')
     }
