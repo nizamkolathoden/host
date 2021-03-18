@@ -51,7 +51,7 @@ const assign = ()=>{
 
                 /><br/>
               
-            <select className={classes.select} value="Role" required 
+            <select className={classes.select} required 
             onChange={e=>{
               setRule(e.target.value)
             }}
