@@ -32,6 +32,7 @@
 }
 
 .admin .form .input, .admin .form .select {
+  outline: none;
   border: none;
   padding: 1em 2.5em;
   border-bottom: 2px solid rgba(45, 64, 89, 0);

@@ -23,6 +23,7 @@ $PcHeadingSize: 1.5rem;
     background: white;
 }
         .input,.select {
+            outline: none;
             border: none;
             padding: 1em 2.5em;
             border-bottom: 2px solid rgba($color: #2d4059, $alpha: 0);
