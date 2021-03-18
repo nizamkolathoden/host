@@ -1,0 +1,68 @@
+$SeconderyColor: #2d4059;
+$ThirdColor: #ea5455;
+$FontFam: "Poppins",
+sans-serif;
+$Primarycolor: #fafafa;
+$SeconderyFontcolor: #fafafa;
+$UltraSmallText: 0.9rem;
+$PcUltraSmallText: 1.2rem;
+$PcHeadingSize: 1.5rem;
+
+.admin {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .form {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        margin-top: 5rem;
+.select{
+    background: white;
+}
+        .input,.select {
+            border: none;
+            padding: 1em 2.5em;
+            border-bottom: 2px solid rgba($color: #2d4059, $alpha: 0);
+            opacity: 1;
+            color: $SeconderyColor;
+            box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+
+            &::placeholder {
+                font-weight: 400;
+            }
+
+            &:focus {
+                transition: .7s ease;
+                border-bottom: 2px solid rgba($color: #2d4059, $alpha: 1);
+            }
+        }
+
+        .submit {
+            margin-top: 3rem;
+            padding: .8em 2.5em;
+            border: none;
+            outline: none;
+            border-radius: 2px;
+            background: $SeconderyColor;
+            color: $SeconderyFontcolor;
+            font-weight: 600;
+            cursor: pointer;
+        }
+    }
+}
+
+@media only screen and (min-width: 960px) {
+    form{
+        .input {
+            padding: 1.3em 3em;
+            font-size: $UltraSmallText;
+            font-weight: 600;
+            .submit{
+                padding: 1.1em 3em;
+            }
+        }
+    } 
+}

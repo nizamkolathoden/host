@@ -1,6 +1,5 @@
 import React,{useState} from 'react';
-// import classes from '../EditStudent.module.css'
- import classes from '../editStudent/EditStudent.module.css'
+import classes from './Admin.module.css'
 
 const Newuser = () => {
     const [userName,setUserName] = useState('');
@@ -31,42 +30,38 @@ const assign = ()=>{
 }
 
     return (
-        <div>
-            <h1>Add New User</h1>
-            <form onSubmit={e=>{
+        <div className={classes.admin} >
+            <form className={classes.form} onSubmit={e=>{
                 e.preventDefault()
                 setBValue('Uploading..')
                 assign()
             }}>
-                Username<input type="text"
+               <input className={classes.input} type="text"
                 required
                     value={userName}
                     onChange={e => setUserName(e.target.value)}
+                    placeholder="Username"
 
                 /><br/>
-             Password<input type="password"
-                    
+            <input className={classes.input} type="password"
                     required
                     value={password}
+                    placeholder="Password"
                     onChange={e => setPassword(e.target.value)}
 
                 /><br/>
-                <label htmlFor="Rule"
-              className={classes.InputField}>Rule</label>
-            <select required 
-            
+              
+            <select className={classes.select} value="Role" required 
             onChange={e=>{
               setRule(e.target.value)
             }}
             >
-
-            <option value=''></option>
               <option value="user">user</option>
               <option value="admin">admin</option>
             
             </select>
            
-                <input type = 'submit' value={bValue}/>
+                <input className={classes.submit} type = 'submit' value={bValue}/>
             </form>
         </div>
     );

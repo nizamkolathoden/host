@@ -1,24 +1,14 @@
-import React, {useEffect} from 'react'
+import React from 'react'
 import classes from './StudentCard.module.css'
 import { useHistory } from 'react-router-dom'
-import "sal.js/dist/sal.css";
-import sal from "sal.js";
-
 const StudentCard = (props) => {
-    useEffect(
-        sal, []
-    );
-
+   
     const history = useHistory()
     return (
 
         <div onClick={() => {
             history.push(`/editstudent/${props.id}`)
         }} className={classes.StudentCardContainer} 
-                data-sal-duration="1200"
-                data-sal="slide-up"
-                data-sal-delay="300"
-                data-sal-easing="ease-out-back"
         >
             <div className={classes.StudentPhoto}>
                 <div className={classes.Photo}>

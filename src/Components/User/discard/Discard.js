@@ -1,9 +1,10 @@
 import React from 'react'
+import StudentNav from '../Navigation/StudentNav'
 
 const Discard = () => {
     return(
         <div>
-            <h3> hello world </h3>
+           <StudentNav/>
         </div>
     )
 }
