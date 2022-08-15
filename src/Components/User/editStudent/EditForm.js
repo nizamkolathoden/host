@@ -71,7 +71,7 @@ const StudentEditForm = () => {
 
     console.log(bloodGroup);
     console.log(admissionSecured);
-    fetch('https://mascsdb.herokuapp.com/student/editstudent', {
+    fetch('http://ec2-54-173-232-140.compute-1.amazonaws.com:8000/student/editstudent', {
       method: 'Put',
       headers: {
         'Content-Type': 'application/json',
@@ -165,7 +165,7 @@ const StudentEditForm = () => {
 
   useEffect(() => {
     console.log(id);
-    fetch(`https://mascsdb.herokuapp.com/profile/${id}`, {
+    fetch(`http://ec2-54-173-232-140.compute-1.amazonaws.com:8000/profile/${id}`, {
       headers: {
         'Content-Type': 'application/json',
         "authorization": token.replace(/['"]+/g, '')

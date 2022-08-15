@@ -13,7 +13,7 @@ export default function DeleteFile() {
     const history = useHistory();
 
     const deleteData = () => {
-        fetch('https://mascsdb.herokuapp.com/student/delete', {
+        fetch('http://ec2-54-173-232-140.compute-1.amazonaws.com:8000/student/delete', {
             method: 'delete',
             headers: {
                 'Content-Type': 'application/json',
