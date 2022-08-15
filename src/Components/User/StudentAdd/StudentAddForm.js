@@ -64,7 +64,7 @@ const [sem,setSem] = useState('')
 
       console.log(bloodGroup);
       console.log(admissionSecured);
-      fetch('http://localhost:8000/student/newstudent', {
+      fetch('http://ec2-54-173-232-140.compute-1.amazonaws.com:8000/student/newstudent', {
         method: 'Post',
         headers: {
           'Content-Type': 'application/json',
