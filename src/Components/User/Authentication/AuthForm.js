@@ -14,7 +14,7 @@ const AuthForm = () => {
 
 const login = ()=>{
   console.log('in login');
-  fetch('http://ec2-54-173-232-140.compute-1.amazonaws.com:8000/auth/login',{
+  fetch('http://localhost:8000/auth/login',{
     method:'Post',
     headers:{
       "Content-Type":'application/json'
