@@ -15,7 +15,7 @@ const Menu = (props) => {
     if (!course || !sem || !batch) alert('select all the fields')
     
     else {
-      fetch('http://ec2-54-173-232-140.compute-1.amazonaws.com:8000/student/filterStudent', {
+      fetch('https://mascdb.herokuapp.com/student/filterStudent', {
         method: 'Put',
         headers: {
           'Content-Type': 'application/json',
@@ -42,7 +42,7 @@ const Menu = (props) => {
   }
 
   const filter = () => {
-    fetch('http://ec2-54-173-232-140.compute-1.amazonaws.com:8000/student/filter', {
+    fetch('https://mascdb.herokuapp.com/student/filter', {
       headers: {
         "authorization": token.replace(/['"]+/g, '')
       }

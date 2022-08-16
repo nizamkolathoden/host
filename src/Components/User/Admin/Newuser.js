@@ -9,7 +9,7 @@ const Newuser = () => {
     const token = localStorage.getItem('mascStudetDb');
 
 const assign = ()=>{
-    fetch('http://ec2-54-173-232-140.compute-1.amazonaws.com:8000/auth/signup',{
+    fetch('https://mascdb.herokuapp.com/auth/signup',{
         method:"Post",
         headers:{
             'Content-Type': 'application/json',

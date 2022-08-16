@@ -14,7 +14,7 @@ const Landing = () => {
     const Call = () => {
         useEffect(() => {
 
-            fetch('http://ec2-54-173-232-140.compute-1.amazonaws.com:8000/student/all', {
+            fetch('https://mascdb.herokuapp.com/student/all', {
                 headers: {
                     "authorization": token.replace(/['"]+/g, '')
                 }
